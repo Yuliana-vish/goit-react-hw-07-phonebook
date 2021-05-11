@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 import FormButton from './FormButton';
 import FormName from './FormName';
 import FormNumber from './FormNumber'
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import styles from './Form.module.css';
-
+import { contactOperations, contactSelectors } from '../../redux/contacts';
 
 class Form extends Component {
   static propTypes = {
@@ -67,10 +66,10 @@ class Form extends Component {
 
 
 const mapStateToProps = state => ({
-  contacts: state.contacts,
+  contacts: contactSelectors.getContacts(state),
 });
 
-const mapDispatchToProps = {
-  addContact: phonebookActions.onAddContact,
-};
+const mapDispatchToProps = dispatch => ({
+  addContact: data => dispatch(contactOperations.addContact(data)),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

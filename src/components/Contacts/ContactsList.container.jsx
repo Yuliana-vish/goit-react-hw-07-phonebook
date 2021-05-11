@@ -1,22 +1,19 @@
 import { connect } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import ContactsList from './ContactsList';
+import { contactOperations, contactSelectors } from '../../redux/contacts';
 
-const getVisibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-
-  return allContacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  contacts: getVisibleContacts(items, filter),
-});
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(phonebookActions.onDeleteContact(id)),
-  
+  onDeleteContact: id => dispatch(contactOperations.deleteContact(id)),
+  fetchContacts: () => dispatch(contactOperations.fetchContacts()),
 });
 
+const mapStateToProps = state => ( {
+  contacts: contactSelectors.getVisibleContacts(state),
+  isLoading: contactSelectors.getLoading(state),
+})
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);
+
+
