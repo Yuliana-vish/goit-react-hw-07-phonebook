@@ -4,6 +4,7 @@ const getContacts = state => state.contacts.items;
 const getFilter = state => state.contacts.filter;
 const getLoading = state => state.contacts.loading;
 
+
 const getVisibleContacts = createSelector(
   [getContacts, getFilter],
   (items, filter) => {
@@ -13,6 +14,7 @@ const getVisibleContacts = createSelector(
     );
   },
 );
+
 
 //eslint-disable-next-line
 export default { getContacts, getFilter, getLoading, getVisibleContacts };

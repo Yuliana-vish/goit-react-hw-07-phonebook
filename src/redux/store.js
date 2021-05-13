@@ -9,8 +9,9 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import contactReducer from './contacts/contactReducer';
+import contactReducer from './phonebook/contact-reducer';
 //import storage from 'redux-persist/lib/storage';
+import logger from 'redux-logger'; 
 
 /* const persistConfig = {
   key: 'contacts',
@@ -23,12 +24,12 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  logger, 
 ];
 
 const store = configureStore({
   reducer: {
-    contacts: contactReducer,
-    
+    contacts: contactReducer,    
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware,

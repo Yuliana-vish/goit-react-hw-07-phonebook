@@ -1,18 +1,14 @@
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import FormButton from './FormButton';
 import FormName from './FormName';
 import FormNumber from './FormNumber'
 import styles from './Form.module.css';
-import { contactOperations, contactSelectors } from '../../redux/contacts';
+import { contactOperations, contactSelectors } from '../../redux/phonebook';
 
 class Form extends Component {
-  static propTypes = {
-    addContact: PropTypes.func.isRequired,
-  };
-
+ 
   state = {
     name: '',
     number: '',

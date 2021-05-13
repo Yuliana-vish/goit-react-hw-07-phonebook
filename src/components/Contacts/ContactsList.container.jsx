@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ContactsList from './ContactsList';
-import { contactOperations, contactSelectors } from '../../redux/contacts';
+import { contactOperations, contactSelectors } from '../../redux/phonebook';
 
 
 const mapDispatchToProps = dispatch => ({
@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ( {
-  contacts: contactSelectors.getVisibleContacts(state),
+  allContacts: contactSelectors.getVisibleContacts(state),
   isLoading: contactSelectors.getLoading(state),
 })
 
